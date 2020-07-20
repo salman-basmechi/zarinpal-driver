@@ -4,6 +4,8 @@ namespace ZarinPalDriver.Models
 {
     public struct Status : IEquatable<Status>
     {
+        public static readonly Status Success = new Status(100);
+
         public Status(int code)
         {
             Code = code;

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -13,10 +14,26 @@ namespace ZarinPalDriver.Internals
 
         public ZarinPalClient(IBaseUriResolver baseUriResolver)
         {
-            this.baseUriResolver = baseUriResolver ?? throw new System.ArgumentNullException(nameof(baseUriResolver));
+            this.baseUriResolver = baseUriResolver ?? throw new ArgumentNullException(nameof(baseUriResolver));
         }
 
-        public async Task<PaymentResponse> RequestAsync(PaymentRequest request, CancellationToken cancellationToken)
+        private static Uri GatewayUri(Mode mode)
+        {
+            string uriString;
+
+            if(mode == Mode.Operational)
+            {
+                uriString = "https://www.zarinpal.com/pg/StartPay";
+            }
+            else
+            {
+                uriString = "https://sandbox.zarinpal.com/pg/StartPay";
+            }
+
+            return new Uri(uriString);
+        }
+
+        public async Task<PaymentResponse> SendAsync(PaymentRequest request, CancellationToken cancellationToken)
         {
             string baseUri = baseUriResolver.Resolve(request.Mode);
 
@@ -36,11 +53,12 @@ namespace ZarinPalDriver.Internals
             string authority = model["data"]["authority"].Value<string>();
 
             var status = new Status(code);
+            var gatewayUri = GatewayUri(request.Mode);
 
-            return new PaymentResponse(authority, status);
+            return new PaymentResponse(authority, status, gatewayUri);
         }
 
-        public async Task<VerificationResponse> RequestAsync(VerificationRequest request, CancellationToken cancellationToken)
+        public async Task<VerificationResponse> SendAsync(VerificationRequest request, CancellationToken cancellationToken)
         {
             string baseUri = baseUriResolver.Resolve(request.Mode);
 
