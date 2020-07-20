@@ -28,18 +28,18 @@ namespace WebApi.Controllers
     public class ProductController : ControllerBase
     {
         [HttpPost]
-        public async Task<IActionResult> PurchaseRequest([FromServices] IZarinPalClient client, [FromBody] decimal amount)
+        public async Task<IActionResult> PurchaseRequest([FromServices] IZarinPalClient client)
         {
             var mode = Mode.SandBox;
 
             var request = new PaymentRequest
             {
                 MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-                Amount = amount,
+                Amount = 1000,
                 Email = "salmanbasmechi@gmail.com",
                 Mobile = "09129335607",
                 Description = "پرداخت تست",
-                CallbackUrl = "http://localhost:5000/api/product/completepurchase", // You can add custom params in callback query string.
+                CallbackUrl = "http://localhost:5000/api/product/completepurchase",
                 Mode = mode
             };
 
