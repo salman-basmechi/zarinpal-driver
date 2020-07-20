@@ -5,7 +5,7 @@ namespace ZarinPalDriver
 {
     public static class ServiceCollectionExtentions
     {
-        public static void AddZarinPalClient(this IServiceCollection services)
+        public static void AddZarinPalDriver(this IServiceCollection services)
         {
             services.AddSingleton<IZarinPalClient, ZarinPalClient>();
 
