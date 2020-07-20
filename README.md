@@ -4,6 +4,8 @@ ZarinPal payment gateway driver in c#
 Getting Started
 ---------------
 
+You can get the latest stable release from the [nuget.org](http://www.nuget.org/packages/zarinpaldriver) or from [github releases page](https://github.com/salmanbasmechi/zarinpaldriver/releases).
+
 ```C#
 using ZarinPalDriver;
 ```
