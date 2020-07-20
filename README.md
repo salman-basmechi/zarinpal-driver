@@ -38,7 +38,7 @@ namespace WebApi.Controllers
                 Amount = 1000,
                 Email = "salmanbasmechi@gmail.com",
                 Mobile = "09129335607",
-                Description = "پرداخت تست",
+                Description = "Test Payment",
                 CallbackUrl = "http://localhost:5000/api/product/completepurchase",
                 Mode = mode
             };
