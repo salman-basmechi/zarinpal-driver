@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZarinPalDriver", "src\ZarinPalDriver.csproj", "{D69D9DF7-DF4C-40D1-86C3-64E657B147B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D69D9DF7-DF4C-40D1-86C3-64E657B147B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D69D9DF7-DF4C-40D1-86C3-64E657B147B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D69D9DF7-DF4C-40D1-86C3-64E657B147B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D69D9DF7-DF4C-40D1-86C3-64E657B147B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81936EBA-C013-4704-95F5-7102A265966B}
+	EndGlobalSection
+EndGlobal
