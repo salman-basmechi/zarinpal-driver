@@ -10,32 +10,58 @@ namespace ZarinPalDriver.Internals
 {
     internal class ZarinPalClient : IZarinPalClient
     {
-        private readonly IBaseUriResolver baseUriResolver;
-
-        public ZarinPalClient(IBaseUriResolver baseUriResolver)
+        private static PaymentResponse PaymentResponse(JObject model, Mode mode)
         {
-            this.baseUriResolver = baseUriResolver ?? throw new ArgumentNullException(nameof(baseUriResolver));
-        }
+            int code;
+            string authority;
 
-        private static Uri GatewayUri(Mode mode)
-        {
-            string uriString;
+            Status status;
+            Uri gatewayUri;
 
-            if(mode == Mode.Operational)
+            if (model["data"].HasValues)
             {
-                uriString = "https://www.zarinpal.com/pg/StartPay";
+                code = model["data"]["code"].Value<int>();
+                authority = model["data"]["authority"].Value<string>();
+
+                status = new Status(code);
+                gatewayUri = GatewayUri.Get(mode);
             }
             else
             {
-                uriString = "https://sandbox.zarinpal.com/pg/StartPay";
+                code = model["errors"]["code"].Value<int>();
+                authority = null;
+
+                status = new Status(code);
+                gatewayUri = null;
             }
 
-            return new Uri(uriString);
+            return new PaymentResponse(authority, status, gatewayUri);
+        }
+
+        private static VerificationResponse VerificationResponse(JObject model)
+        {
+            int code;
+            string referenceId;
+
+            if (model["data"].HasValues)
+            {
+                code = model["data"]["code"].Value<int>();
+                referenceId = model["data"]["ref_id"].Value<string>();
+            }
+            else
+            {
+                code = model["errors"]["code"].Value<int>();
+                referenceId = null;
+            }
+
+            var status = new Status(code);
+
+            return new VerificationResponse(status, referenceId);
         }
 
         public async Task<PaymentResponse> SendAsync(PaymentRequest request, CancellationToken cancellationToken)
         {
-            string baseUri = baseUriResolver.Resolve(request.Mode);
+            string baseUri = ApiBaseUri.Get(request.Mode);
 
             string requestUri = $"{baseUri}/request.json";
             string json = request.ToJson();
@@ -49,18 +75,12 @@ namespace ZarinPalDriver.Internals
 
             var model = JObject.Parse(json);
 
-            int code = model["data"]["code"].Value<int>();
-            string authority = model["data"]["authority"].Value<string>();
-
-            var status = new Status(code);
-            var gatewayUri = GatewayUri(request.Mode);
-
-            return new PaymentResponse(authority, status, gatewayUri);
+            return PaymentResponse(model, request.Mode);
         }
 
         public async Task<VerificationResponse> SendAsync(VerificationRequest request, CancellationToken cancellationToken)
         {
-            string baseUri = baseUriResolver.Resolve(request.Mode);
+            string baseUri = ApiBaseUri.Get(request.Mode);
 
             string requestUri = $"{baseUri}/verify.json";
             string json = request.ToJson();
@@ -74,12 +94,7 @@ namespace ZarinPalDriver.Internals
 
             var model = JObject.Parse(json);
 
-            int code = model["data"]["code"].Value<int>();
-            string referenceId = model["data"]["ref_id"].Value<string>();
-
-            var status = new Status(code);
-
-            return new VerificationResponse(status, referenceId);
+            return VerificationResponse(model);
         }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace ZarinPalDriver.Internals
 {
-    internal class BaseUriResolver : IBaseUriResolver
+    internal static class ApiBaseUri
     {
-        public string Resolve(Mode mode)
+        public static string Get(Mode mode)
         {
             switch (mode)
             {
@@ -16,9 +16,11 @@ namespace ZarinPalDriver.Internals
                     {
                         return "https://api.zarinpal.com/pg/v4/payment";
                     }
+                default:
+                    {
+                        return null;
+                    }
             }
-
-            return null;
         }
     }
 }

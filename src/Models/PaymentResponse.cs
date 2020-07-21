@@ -8,7 +8,7 @@ namespace ZarinPalDriver.Models
         {
             Authority = authority;
             Status = status;
-            GatewayUri = gatewayUri ?? throw new ArgumentNullException(nameof(gatewayUri));
+            GatewayUri = gatewayUri;
         }
 
         public string Authority { get; }

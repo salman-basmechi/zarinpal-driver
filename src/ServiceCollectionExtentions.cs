@@ -8,8 +8,6 @@ namespace ZarinPalDriver
         public static void AddZarinPalDriver(this IServiceCollection services)
         {
             services.AddSingleton<IZarinPalClient, ZarinPalClient>();
-
-            services.AddSingleton<IBaseUriResolver, BaseUriResolver>();
         }
     }
 }
