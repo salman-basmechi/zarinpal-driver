@@ -6,8 +6,8 @@ namespace ZarinPalDriver
 {
     public interface IZarinPalClient
     {
-        Task<PaymentResponse> HandleAsync(PaymentRequest request, CancellationToken cancellationToken = default);
+        Task<PaymentResponse> SendAsync(PaymentRequest request, CancellationToken cancellationToken = default);
 
-        Task<VerificationResponse> HandleAsync(VerificationRequest request, CancellationToken cancellationToken = default);
+        Task<VerificationResponse> SendAsync(VerificationRequest request, CancellationToken cancellationToken = default);
     }
 }
