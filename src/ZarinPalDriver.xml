@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZarinPalDriver</name>
+    </assembly>
+    <members>
+        <member name="M:ZarinPalDriver.Models.PaymentRequest.CreateDefault">
+            <summary>
+            Create from default options. <para />
+            MerchantId and Mode properties set by default configuration values.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZarinPalDriver.Models.VerificationRequest.CreateDefault">
+            <summary>
+            Create from default options. <para />
+            MerchantId and Mode properties set by default configuration values.
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
