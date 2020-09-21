@@ -3,7 +3,7 @@ using ZarinPalDriver.Models;
 
 namespace ZarinPalDriver.Internals
 {
-    public static class ModelExtentions
+    public static class ModelExtensions
     {
         public static string ToJson(this PaymentRequest request)
         {
