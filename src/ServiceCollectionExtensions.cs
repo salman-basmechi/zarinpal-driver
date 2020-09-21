@@ -3,7 +3,7 @@ using ZarinPalDriver.Internals;
 
 namespace ZarinPalDriver
 {
-    public static class ServiceCollectionExtentions
+    public static class ServiceCollectionExtensions
     {
         public static void AddZarinPalDriver(this IServiceCollection services)
         {
