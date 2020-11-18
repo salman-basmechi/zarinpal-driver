@@ -59,7 +59,11 @@ namespace ZarinPalDriver.Internals
             return new VerificationResponse(status, referenceId);
         }
 
-        public async Task<PaymentResponse> SendAsync(PaymentRequest request, CancellationToken cancellationToken)
+        public PaymentResponse Send(PaymentRequest request) => SendAsync(request).Result;
+
+        public VerificationResponse Send(VerificationRequest request) => SendAsync(request).Result;
+
+        public async Task<PaymentResponse> SendAsync(PaymentRequest request, CancellationToken cancellationToken = default)
         {
             string baseUri = ApiBaseUri.Get(request.Mode);
 
@@ -78,7 +82,7 @@ namespace ZarinPalDriver.Internals
             return PaymentResponse(model, request.Mode);
         }
 
-        public async Task<VerificationResponse> SendAsync(VerificationRequest request, CancellationToken cancellationToken)
+        public async Task<VerificationResponse> SendAsync(VerificationRequest request, CancellationToken cancellationToken = default)
         {
             string baseUri = ApiBaseUri.Get(request.Mode);
 
