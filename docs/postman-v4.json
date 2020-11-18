@@ -1,0 +1,142 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ZarinPal-Payment",
+		"_postman_id": "8921f834-194d-5931-efe1-2420f146fc6c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "request",
+			"description": "",
+			"item": [
+				{
+					"name": "request",
+					"request": {
+						"url": "https://api.zarinpal.com/pg/v4/payment/request.json",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"merchant_id\": \"4ced0a1e-4ad8-4309-9668-3ea3ae8e8897\",\n  \"amount\": \"1010\",\n  \"callback_url\": \"http://redreseller.com/verify\",\n  \"description\": \"افزایش اعتبار کاربر شماره ۱۱۳۴۶۲۹\",\n  \"metadata\": {\n    \"mobile\": \"09195523234\",\n    \"email\": \"info.davari@gmail.com\"\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "request - wages - floating",
+					"request": {
+						"url": "https://api.zarinpal.com/pg/v4/payment/request.json",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"merchant_id\": \"4ced0a1e-4ad8-4309-9668-3ea3ae8e8897\",\n  \"amount\": \"2000\",\n  \"callback_url\": \"http://redreseller.com/verify\",\n  \"description\": \"Transaction description.\",\n  \"metadata\": {\n    \"mobile\": \"09195523234\",\n    \"email\": \"info.davari@gmail.com\"\n  },\n  \"wages\": [\n    {\n      \"zp_id\": \"ZP.7\",\n      \"iban\": \"IR130570028780010957775103\",\n      \"amount\": \"1000\",\n      \"description\": \"تسهیم سود فروش از محصول به مسعود امینی\"\n    }\n  ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "request - wages - fixed",
+					"request": {
+						"url": "https://api.zarinpal.com/pg/v4/payment/request.json",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"merchant_id\": \"4af9b8d0-743f-3cb4-8656-92e1e1873a43\",\n  \"amount\": \"10000\",\n  \"callback_url\": \"http://redreseller.com/verify\",\n  \"description\": \"Transaction description.\",\n  \"metadata\": {\n    \"mobile\": \"09195523234\",\n    \"email\": \"info.davari@gmail.com\"\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "verify",
+			"request": {
+				"url": "https://api.zarinpal.com/pg/v4/payment/verify.json",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"merchant_id\": \"4ced0a1e-4ad8-4309-9668-3ea3ae8e8897\",\n  \"amount\": \"1000\",\n  \"authority\": \"A00000000000000000000000000000000002\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UnVerified",
+			"request": {
+				"url": "https://api.zarinpal.com/pg/v4/payment/unVerified.json",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"merchant_id\": \"4ced0a1e-4ad8-4309-9668-3ea3ae8e8897\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
