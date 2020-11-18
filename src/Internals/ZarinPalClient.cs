@@ -12,6 +12,11 @@ namespace ZarinPalDriver.Internals
     {
         private static PaymentResponse PaymentResponse(JObject model, Mode mode)
         {
+            if (model is null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
             int code;
             string authority;
 
@@ -40,6 +45,11 @@ namespace ZarinPalDriver.Internals
 
         private static VerificationResponse VerificationResponse(JObject model)
         {
+            if (model is null)
+            {
+                throw new ArgumentNullException(nameof(model));
+            }
+
             int code;
             string referenceId;
 
@@ -65,6 +75,11 @@ namespace ZarinPalDriver.Internals
 
         public async Task<PaymentResponse> SendAsync(PaymentRequest request, CancellationToken cancellationToken = default)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             string baseUri = ApiBaseUri.Get(request.Mode);
 
             string requestUri = $"{baseUri}/request.json";
@@ -84,6 +99,11 @@ namespace ZarinPalDriver.Internals
 
         public async Task<VerificationResponse> SendAsync(VerificationRequest request, CancellationToken cancellationToken = default)
         {
+            if (request is null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
             string baseUri = ApiBaseUri.Get(request.Mode);
 
             string requestUri = $"{baseUri}/verify.json";
